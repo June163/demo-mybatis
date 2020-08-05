@@ -1,5 +1,7 @@
 package com.pindao.infrabase.mdm.handler;
 
+import com.alibaba.dubbo.remoting.RemotingException;
+import com.alibaba.dubbo.rpc.RpcException;
 import com.pindao.common.sdk.domain.vo.ApiResult;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -25,6 +27,18 @@ public class GlobalExceptionHandler {
      * 错误提示
      */
     private final String ERROR_STR = "未知错误";
+
+    /**
+     * dubbo 调用异常
+     *
+     * @param e
+     * @return
+     */
+    @ExceptionHandler({RemotingException.class, RpcException.class})
+    public ApiResult remotingException(Exception e) {
+        log.error(e.getMessage(), e);
+        return ApiResult.failure(ERROR_CODE, "502 Bad gateway!");
+    }
 
     /**
      * 基础异常

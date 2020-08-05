@@ -14,7 +14,7 @@ spring:
       password: ehr_platform
   dubbo:
     application:
-      name: ehr-center-provider
+      name: mdm-core
       qos-enable: false
       qos-accept-foreign-ip: false
     protocol:

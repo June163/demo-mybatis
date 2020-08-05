@@ -1,38 +1,15 @@
 package com.pindao.infrabase.mdm.core;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 
-/**
- * Unit test for simple App.
- */
-public class MdmCoreApplicationTest
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public MdmCoreApplicationTest(String testName )
-    {
-        super( testName );
-    }
+@SpringBootTest
+@RunWith(SpringRunner.class)
+@Slf4j
+@ActiveProfiles("dev")
+public class MdmCoreApplicationTest {
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( MdmCoreApplicationTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
 }
