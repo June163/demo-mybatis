@@ -32,7 +32,7 @@ import java.util.List;
 @Api(tags = "国家省市区接口")
 public class SaasMdmPublicAreaController {
 
-    @Reference(version = "1.0.0", url = "dubbo://192.168.203.72:20880")
+    @Reference(version = "1.0.0")
     private SaasMdmPublicAreaClient saasMdmPublicAreaClient;
 
     @ApiOperation(value = "搜索区域")
