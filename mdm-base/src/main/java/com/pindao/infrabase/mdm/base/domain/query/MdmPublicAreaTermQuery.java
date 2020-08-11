@@ -19,7 +19,7 @@ import java.io.Serializable;
 @ToString
 public class MdmPublicAreaTermQuery implements Serializable {
 
-    @ApiModelProperty(value = "搜索指定areaID下区域第几层数据，默认为0，目前最大3层", example = "1")
+    @ApiModelProperty(value = "搜索指定areaID下区域第几层数据，默认为1，目前最大3层", example = "1")
     @Max(value = 3, message = "areaDepths范围0~3")
     @Min(value = 0, message = "areaDepths范围0~3")
     private Byte areaDepths = 1;
