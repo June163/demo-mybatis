@@ -37,12 +37,6 @@ public class SaasMdmPublicAreaServiceImpl extends ServiceImpl<SaasMdmPublicAreaM
 
     @Override
     public List<MdmPublicAreaDTO> queryByKeywords(MdmPublicAreaQuery query) {
-        log.trace("trace log");
-        log.debug("debug log");
-        log.info("info log");
-        log.warn("warn log");
-        log.error("error log");
-
         LambdaQueryWrapper<SaasMdmPublicArea> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(ObjectUtils.isNotEmpty(query.getAreaId()), SaasMdmPublicArea::getAreaId, query.getAreaId())
                 .eq(ObjectUtils.isNotEmpty(query.getParentAreaID()), SaasMdmPublicArea::getParentAreaId, query.getParentAreaID());
