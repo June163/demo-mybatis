@@ -1,13 +1,14 @@
 package com.pindao.infrabase.mdm.api;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.pindao.infrabase.mdm.base.domain.dto.MdmPublicAreaDTO;
 import com.pindao.infrabase.mdm.base.domain.query.MdmPublicAreaQuery;
 import com.pindao.infrabase.mdm.base.rpcclient.SaasMdmPublicAreaClient;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Reference;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -15,9 +16,10 @@ import java.util.List;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Slf4j
+@ActiveProfiles("local")
 public class MdmApiApplicationTest {
 
-    @Reference(version = "1.0.0", url = "dubbo://192.168.203.72:20880")
+    @Reference(version = "1.0.0")
     private SaasMdmPublicAreaClient saasMdmPublicAreaClient;
 
     @Test
