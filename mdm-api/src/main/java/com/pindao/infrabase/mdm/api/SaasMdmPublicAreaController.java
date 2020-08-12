@@ -1,7 +1,5 @@
 package com.pindao.infrabase.mdm.api;
 
-
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.pindao.common.sdk.domain.vo.ApiResult;
 import com.pindao.infrabase.mdm.base.domain.dto.MdmPublicAreaDTO;
 import com.pindao.infrabase.mdm.base.domain.query.MdmPublicAreaFuzzyQuery;
@@ -10,6 +8,7 @@ import com.pindao.infrabase.mdm.base.domain.query.MdmPublicAreaTermQuery;
 import com.pindao.infrabase.mdm.base.rpcclient.SaasMdmPublicAreaClient;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.BeanUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;

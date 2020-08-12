@@ -1,14 +1,13 @@
 package com.pindao.infrabase.mdm.handler;
 
-import com.alibaba.dubbo.remoting.RemotingException;
-import com.alibaba.dubbo.rpc.RpcException;
 import com.pindao.common.sdk.domain.vo.ApiResult;
-import org.apache.commons.lang3.StringUtils;
+import com.pindao.common.sdk.exception.BizException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
  * @author : wangyongkang
@@ -21,37 +20,43 @@ public class GlobalExceptionHandler {
     /**
      * 错误码
      */
-    private final int ERROR_CODE = -1;
+    private static final int ERROR_CODE = -1;
 
     /**
      * 错误提示
      */
-    private final String ERROR_STR = "未知错误";
+    private static final String ERROR_STR = "未知错误";
 
     /**
-     * dubbo 调用异常
-     *
-     * @param e
-     * @return
-     */
-    @ExceptionHandler({RemotingException.class, RpcException.class})
-    public ApiResult remotingException(Exception e) {
-        log.error(e.getMessage(), e);
-        return ApiResult.failure(ERROR_CODE, "502 Bad gateway!");
-    }
-
-    /**
-     * 基础异常
+     * 系统异常
      */
     @ExceptionHandler(Exception.class)
     public ApiResult baseException(Exception e) {
         log.error(e.getMessage(), e);
-        if (StringUtils.isBlank(e.getMessage())) {
-            return ApiResult.failure(ERROR_CODE, ERROR_STR);
-        }
+        return ApiResult.failure(ERROR_CODE, ERROR_STR);
+    }
+
+    /**
+     * 自定义业务异常-2
+     */
+    @ExceptionHandler(BizException.class)
+    public ApiResult bizException(BizException e) {
+        log.error(e.getMessage(), e);
         return ApiResult.failure(ERROR_CODE, e.getMessage());
     }
 
+    /**
+     * 统一捕获 404
+     */
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ApiResult handlerNoFoundException(NoHandlerFoundException e) {
+        log.error(e.getMessage(), e);
+        return ApiResult.failure(ERROR_CODE, "路径不存在，请检查路径是否正确");
+    }
+
+    /**
+     * 参数校验
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ApiResult methodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.error(e.getMessage(), e);

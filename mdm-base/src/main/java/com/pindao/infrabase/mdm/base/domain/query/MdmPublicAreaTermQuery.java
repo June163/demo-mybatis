@@ -8,6 +8,7 @@ import lombok.ToString;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -25,5 +26,6 @@ public class MdmPublicAreaTermQuery implements Serializable {
     private Byte areaDepths = 1;
 
     @ApiModelProperty(value = "查询指定areaID下区域", example = "210900")
+    @NotNull(message = "areaId不能为空")
     private Integer areaId;
 }

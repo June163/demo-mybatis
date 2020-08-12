@@ -1,18 +1,21 @@
+server:
+  servlet:
+    context-path: /mdm-api
+
 spring:
   application:
     name: mdm-api
-  dubbo:
-    application:
-      name: ${spring.application.name}
-    registry:
-      address: nacos://mse-77279d20-p.nacos-ans.mse.aliyuncs.com:8848
-    protocol:
-      name: dubbo
-    consumer:
-      check: false
-      lazy: true
-      timeout: 600000
-server:
-  port: 10002
-  servlet:
-    context-path: /mdm
+
+dubbo:
+  application:
+    name: ${spring.application.name}
+  protocol:
+    name: dubbo
+    port: -1
+  consumer:
+    check: false
+    lazy: true
+    timeout: 600000
+
+logging:
+  config: classpath:log4j2.xml

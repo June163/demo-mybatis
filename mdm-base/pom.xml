@@ -8,7 +8,7 @@
         <artifactId>mdm</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>com.pindao</groupId>
+
     <artifactId>mdm-base</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>mdm-base</name>
