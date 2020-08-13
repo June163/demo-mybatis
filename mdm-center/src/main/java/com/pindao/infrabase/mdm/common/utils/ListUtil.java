@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +24,7 @@ public class ListUtil {
      */
     public static <S, T> List<T> convertModelToDto(List<S> source, Class<T> clazz) {
         if (CollectionUtils.isEmpty(source)) {
-            return Collections.emptyList();
+            return null;
         }
         return source.stream().map(s -> {
             T t = null;
