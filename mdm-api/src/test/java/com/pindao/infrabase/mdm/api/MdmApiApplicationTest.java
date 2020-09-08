@@ -32,7 +32,7 @@ public class MdmApiApplicationTest {
         log.info("入参 -> [{}]", query);
         List<MdmPublicAreaDTO> dtoList = saasMdmPublicAreaClient.queryByKeywords(query);
         log.info("结果 -> [{}]", dtoList);
-        RpcResult<List<MdmPublicAreaDTO>> rpcResult = saasMdmPublicAreaClient.query(query);
+        RpcResult<List<MdmPublicAreaDTO>> rpcResult = saasMdmPublicAreaClient.list(query);
         log.info("rpc结果 -> [{}]", rpcResult);
     }
 }

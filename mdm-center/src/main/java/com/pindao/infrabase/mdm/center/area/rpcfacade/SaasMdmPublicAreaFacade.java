@@ -29,7 +29,7 @@ public class SaasMdmPublicAreaFacade implements SaasMdmPublicAreaClient {
     }
 
     @Override
-    public RpcResult<List<MdmPublicAreaDTO>> query(MdmPublicAreaQuery query) {
+    public RpcResult<List<MdmPublicAreaDTO>> list(MdmPublicAreaQuery query) {
         return RpcResult.success(iSaasMdmPublicAreaService.queryByKeywords(query));
     }
 }

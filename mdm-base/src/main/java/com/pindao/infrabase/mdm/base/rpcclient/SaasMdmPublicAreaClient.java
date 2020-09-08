@@ -16,7 +16,7 @@ public interface SaasMdmPublicAreaClient {
      *
      * @param query 参数
      * @return: 区域集合
-     * @description: 这个方法已被弃用，请使用最新的方法 query，在后面的版本不再更新。
+     * @description: 这个方法已被弃用，请使用最新的方法 list，在后面的版本不再更新。
      */
     @Deprecated
     List<MdmPublicAreaDTO> queryByKeywords(MdmPublicAreaQuery query);
@@ -27,5 +27,5 @@ public interface SaasMdmPublicAreaClient {
      * @param query 参数
      * @return: 区域集合，根据 code 判断此次请求是否成功，0表示成功，其它表示失败。
      */
-    RpcResult<List<MdmPublicAreaDTO>> query(MdmPublicAreaQuery query);
+    RpcResult<List<MdmPublicAreaDTO>> list(MdmPublicAreaQuery query);
 }
