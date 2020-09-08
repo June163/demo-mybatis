@@ -31,4 +31,7 @@ public class MdmPublicAreaFuzzyQuery implements Serializable {
     @ApiModelProperty(value = "搜索指定areaID下区域", example = "1")
     @NotNull(message = "parentAreaID不能为空")
     private Integer parentAreaID;
+
+    @ApiModelProperty(value = "国际域名缩写，US-美国，JPN-日本，CN-中国", example = "CN")
+    private String countryAbbreviation;
 }

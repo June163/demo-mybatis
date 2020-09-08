@@ -16,7 +16,8 @@ import java.io.Serializable;
 @ApiModel(value = "搜索区域入参")
 public class MdmPublicAreaQuery implements Serializable {
     private String keywords;
-    private Byte areaDepths;
+    private Byte areaDepths = 0;
     private Integer parentAreaID;
     private Integer areaId;
+    private String countryAbbreviation;
 }

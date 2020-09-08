@@ -28,4 +28,7 @@ public class MdmPublicAreaTermQuery implements Serializable {
     @ApiModelProperty(value = "查询指定areaID下区域", example = "210900")
     @NotNull(message = "areaId不能为空")
     private Integer areaId;
+
+    @ApiModelProperty(value = "国际域名缩写，US-美国，JPN-日本，CN-中国", example = "CN")
+    private String countryAbbreviation;
 }

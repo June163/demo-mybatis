@@ -1,5 +1,6 @@
 package com.pindao.infrabase.mdm.center.area.rpcfacade;
 
+import com.pindao.common.sdk.domain.vo.RpcResult;
 import com.pindao.infrabase.mdm.base.domain.dto.MdmPublicAreaDTO;
 import com.pindao.infrabase.mdm.base.domain.query.MdmPublicAreaQuery;
 import com.pindao.infrabase.mdm.base.rpcclient.SaasMdmPublicAreaClient;
@@ -25,5 +26,10 @@ public class SaasMdmPublicAreaFacade implements SaasMdmPublicAreaClient {
     @Override
     public List<MdmPublicAreaDTO> queryByKeywords(MdmPublicAreaQuery query) {
         return iSaasMdmPublicAreaService.queryByKeywords(query);
+    }
+
+    @Override
+    public RpcResult<List<MdmPublicAreaDTO>> query(MdmPublicAreaQuery query) {
+        return RpcResult.success(iSaasMdmPublicAreaService.queryByKeywords(query));
     }
 }

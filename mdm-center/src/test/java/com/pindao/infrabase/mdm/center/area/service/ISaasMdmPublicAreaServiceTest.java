@@ -19,7 +19,7 @@ public class ISaasMdmPublicAreaServiceTest extends MdmCenterApplicationTest {
     public void queryByKeywords() {
         MdmPublicAreaQuery query = new MdmPublicAreaQuery();
         query.setParentAreaID(86);
-        query.setAreaDepths((byte) 1);
+        query.setAreaDepths((byte) 0);
         query.setKeywords("省");
         log.info("入参 -> [{}]", query);
         List<MdmPublicAreaDTO> dtoList = iSaasMdmPublicAreaService.queryByKeywords(query);

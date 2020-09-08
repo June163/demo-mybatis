@@ -16,7 +16,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,18 +36,18 @@ public class SaasMdmPublicAreaServiceImpl extends ServiceImpl<SaasMdmPublicAreaM
 
     @Override
     public List<MdmPublicAreaDTO> queryByKeywords(MdmPublicAreaQuery query) {
+        log.info("queryByKeywords -> query[{}]", query);
         LambdaQueryWrapper<SaasMdmPublicArea> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(ObjectUtils.isNotEmpty(query.getAreaId()), SaasMdmPublicArea::getAreaId, query.getAreaId())
-                .eq(ObjectUtils.isNotEmpty(query.getParentAreaID()), SaasMdmPublicArea::getParentAreaId, query.getParentAreaID());
-        /**
-         * 判断是否有模糊查询
-         */
-        if (StringUtils.isNotEmpty(query.getKeywords())) {
-            wrapper.and(Wrapper -> Wrapper
-                    .like(SaasMdmPublicArea::getAreaName, query.getKeywords()).or()
-                    .like(SaasMdmPublicArea::getAreaCode, query.getKeywords()).or()
-                    .like(SaasMdmPublicArea::getZipCode, query.getKeywords()));
-        }
+                .eq(ObjectUtils.isNotEmpty(query.getParentAreaID()), SaasMdmPublicArea::getParentAreaId, query.getParentAreaID())
+                .eq(StringUtils.isNotEmpty(query.getCountryAbbreviation()), SaasMdmPublicArea::getCountryAbbreviation, query.getCountryAbbreviation())
+                //判断是否有模糊查询
+                .and(StringUtils.isNotEmpty(query.getKeywords()), Wrapper -> Wrapper
+                        .like(SaasMdmPublicArea::getAreaName, query.getKeywords())
+                        .or()
+                        .like(SaasMdmPublicArea::getAreaCode, query.getKeywords())
+                        .or()
+                        .like(SaasMdmPublicArea::getZipCode, query.getKeywords()));
         List<SaasMdmPublicArea> saasMdmPublicAreas = mdmPublicAreaMapper.selectList(wrapper);
         return saasMdmPublicAreas.stream().map(saasMdmPublicArea -> {
             MdmPublicAreaDTO mdmPublicAreaDTO = new MdmPublicAreaDTO();
@@ -68,9 +67,7 @@ public class SaasMdmPublicAreaServiceImpl extends ServiceImpl<SaasMdmPublicAreaM
          */
         if (mdmPublicAreaDTO.getAreaDepths() < depth) {
             List<SaasMdmPublicArea> subAreaList = mdmPublicAreaMapper
-                    .selectByMap(
-                            Collections.singletonMap("parent_area_id", mdmPublicAreaDTO.getAreaId())
-                    );
+                    .selectList(new LambdaQueryWrapper<SaasMdmPublicArea>().eq(SaasMdmPublicArea::getParentAreaId, mdmPublicAreaDTO.getAreaId()));
             mdmPublicAreaDTO.setList(ListUtil.convertModelToDto(subAreaList, MdmPublicAreaDTO.class));
             if (CollectionUtils.isEmpty(mdmPublicAreaDTO.getList())) {
                 return;
