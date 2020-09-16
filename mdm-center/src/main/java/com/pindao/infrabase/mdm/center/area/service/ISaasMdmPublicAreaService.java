@@ -18,4 +18,6 @@ import java.util.List;
 public interface ISaasMdmPublicAreaService extends IService<SaasMdmPublicArea> {
 
     List<MdmPublicAreaDTO> queryByKeywords(MdmPublicAreaQuery query);
+
+    List<MdmPublicAreaDTO> queryByAreaIds(List<Integer> areaIds);
 }

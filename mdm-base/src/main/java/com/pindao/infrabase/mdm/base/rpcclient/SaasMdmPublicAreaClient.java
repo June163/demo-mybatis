@@ -28,4 +28,12 @@ public interface SaasMdmPublicAreaClient {
      * @return: 区域集合，根据 code 判断此次请求是否成功，0表示成功，其它表示失败。
      */
     RpcResult<List<MdmPublicAreaDTO>> list(MdmPublicAreaQuery query);
+
+    /**
+     * 根据 areaIds 查询所有的区域
+     *
+     * @param areaIds
+     * @return
+     */
+    RpcResult<List<MdmPublicAreaDTO>> queryByAreaIds(List<Integer> areaIds);
 }

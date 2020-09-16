@@ -75,4 +75,10 @@ public class SaasMdmPublicAreaServiceImpl extends ServiceImpl<SaasMdmPublicAreaM
             mdmPublicAreaDTO.getList().stream().forEach(subArea -> querySubList(subArea, depth));
         }
     }
+
+    @Override
+    public List<MdmPublicAreaDTO> queryByAreaIds(List<Integer> areaIds) {
+        List<SaasMdmPublicArea> saasMdmPublicAreas = mdmPublicAreaMapper.selectList(new LambdaQueryWrapper<SaasMdmPublicArea>().in(SaasMdmPublicArea::getAreaId, areaIds));
+        return ListUtil.convertModelToDto(saasMdmPublicAreas, MdmPublicAreaDTO.class);
+    }
 }

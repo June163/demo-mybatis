@@ -1,5 +1,6 @@
 package com.pindao.infrabase.mdm.center.area.rpcfacade;
 
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.pindao.common.sdk.domain.vo.RpcResult;
 import com.pindao.infrabase.mdm.base.domain.dto.MdmPublicAreaDTO;
 import com.pindao.infrabase.mdm.base.domain.query.MdmPublicAreaQuery;
@@ -31,5 +32,13 @@ public class SaasMdmPublicAreaFacade implements SaasMdmPublicAreaClient {
     @Override
     public RpcResult<List<MdmPublicAreaDTO>> list(MdmPublicAreaQuery query) {
         return RpcResult.success(iSaasMdmPublicAreaService.queryByKeywords(query));
+    }
+
+    @Override
+    public RpcResult<List<MdmPublicAreaDTO>> queryByAreaIds(List<Integer> areaIds) {
+        if (CollectionUtils.isEmpty(areaIds)) {
+            return RpcResult.error(-1, "areaIds不能为空。");
+        }
+        return RpcResult.success(iSaasMdmPublicAreaService.queryByAreaIds(areaIds));
     }
 }

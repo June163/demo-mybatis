@@ -12,6 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @SpringBootTest
@@ -34,5 +36,18 @@ public class MdmApiApplicationTest {
         log.info("结果 -> [{}]", dtoList);
         RpcResult<List<MdmPublicAreaDTO>> rpcResult = saasMdmPublicAreaClient.list(query);
         log.info("rpc结果 -> [{}]", rpcResult);
+    }
+
+    @Test
+    public void queryByAreaIds() {
+        RpcResult<List<MdmPublicAreaDTO>> listRpcResult = saasMdmPublicAreaClient.queryByAreaIds(null);
+        log.info("listRpcResult -> [{}]", listRpcResult);
+        listRpcResult = saasMdmPublicAreaClient.queryByAreaIds(Arrays.asList(141025,
+                141026,
+                141027,
+                141028));
+        log.info("listRpcResult -> [{}]", listRpcResult);
+        listRpcResult = saasMdmPublicAreaClient.queryByAreaIds(Collections.emptyList());
+        log.info("listRpcResult -> [{}]", listRpcResult);
     }
 }
