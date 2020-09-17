@@ -1,5 +1,6 @@
 package com.pindao.infrabase.mdm.api;
 
+import com.alibaba.fastjson.JSON;
 import com.pindao.common.sdk.domain.vo.RpcResult;
 import com.pindao.infrabase.mdm.base.domain.dto.MdmPublicAreaDTO;
 import com.pindao.infrabase.mdm.base.domain.query.MdmPublicAreaQuery;
@@ -19,7 +20,7 @@ import java.util.List;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Slf4j
-@ActiveProfiles("local")
+@ActiveProfiles("test")
 public class MdmApiApplicationTest {
 
     @Reference(version = "1.0.0")
@@ -31,23 +32,24 @@ public class MdmApiApplicationTest {
         query.setKeywords("市");
         query.setAreaDepths((byte) 0);
         query.setCountryAbbreviation("CN");
-        log.info("入参 -> [{}]", query);
+        log.info("入参 -> [{}]" , query);
         List<MdmPublicAreaDTO> dtoList = saasMdmPublicAreaClient.queryByKeywords(query);
-        log.info("结果 -> [{}]", dtoList);
+        log.info("结果 -> [{}]" , dtoList);
+        log.info("json -> [{}]" , JSON.toJSONString(query));
         RpcResult<List<MdmPublicAreaDTO>> rpcResult = saasMdmPublicAreaClient.list(query);
-        log.info("rpc结果 -> [{}]", rpcResult);
+        log.info("rpc结果 -> [{}]" , rpcResult);
     }
 
     @Test
     public void queryByAreaIds() {
         RpcResult<List<MdmPublicAreaDTO>> listRpcResult = saasMdmPublicAreaClient.queryByAreaIds(null);
-        log.info("listRpcResult -> [{}]", listRpcResult);
+        log.info("listRpcResult -> [{}]" , listRpcResult);
         listRpcResult = saasMdmPublicAreaClient.queryByAreaIds(Arrays.asList(141025,
                 141026,
                 141027,
                 141028));
-        log.info("listRpcResult -> [{}]", listRpcResult);
+        log.info("listRpcResult -> [{}]" , listRpcResult);
         listRpcResult = saasMdmPublicAreaClient.queryByAreaIds(Collections.emptyList());
-        log.info("listRpcResult -> [{}]", listRpcResult);
+        log.info("listRpcResult -> [{}]" , listRpcResult);
     }
 }
