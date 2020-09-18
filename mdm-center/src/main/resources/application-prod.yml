@@ -5,6 +5,7 @@ spring:
       url: jdbc:mysql://rm-bp1kg560aa6059zbx.mysql.rds.aliyuncs.com/infrabase_mdm?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
       username: teacore_rds
       password: teacore-rds@pindao
+      max-active: 20
 
 # dubbo 注册地址配置
 dubbo:
