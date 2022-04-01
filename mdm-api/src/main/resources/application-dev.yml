@@ -1,3 +1,0 @@
-dubbo:
-  registry:
-    address: nacos://mse-77279d20-p.nacos-ans.mse.aliyuncs.com:8848
